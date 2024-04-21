@@ -36,7 +36,7 @@ export const StreamActions = {
   },
 
   refresh() {
-    session.refresh(this.baseURI, this.requestId)
+    session.refresh(this.requestId)
   },
 
   morph() {
