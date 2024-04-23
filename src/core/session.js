@@ -107,10 +107,10 @@ export class Session {
     }
   }
 
-  refresh(requestId) {
+  refresh(url, requestId) {
     const isRecentRequest = requestId && this.recentRequests.has(requestId)
     if (!isRecentRequest) {
-      this.visit(window.location.href, { action: "replace", shouldCacheSnapshot: false })
+      this.visit(url, { action: "replace", shouldCacheSnapshot: false })
     }
   }
 
