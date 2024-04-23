@@ -55,6 +55,7 @@ test("debounce stream page refreshes", async ({ page }) => {
 })
 
 test("debounced refresh of stale URL does not hijack new location navigated to", async ({ page }) => {
+  await setLongerPageRefreshDebouncePeriod(page)
   const urlBeforeVisit = page.url()
 
   await page.click("#refresh button")
@@ -79,6 +80,6 @@ async function fetchRequestId(page) {
   })
 }
 
-async function visitLocation(page, location) {
-  return page.evaluate((location) => window.Turbo.visit(location), location)
+async function setLongerPageRefreshDebouncePeriod(page, period = 500) {
+  return page.evaluate((period) => window.Turbo.session.pageRefreshDebouncePeriod = period, period)
 }

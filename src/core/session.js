@@ -109,7 +109,8 @@ export class Session {
 
   refresh(url, requestId) {
     const isRecentRequest = requestId && this.recentRequests.has(requestId)
-    if (!isRecentRequest) {
+    const isCurrentUrl = url === document.baseURI
+    if (!isRecentRequest && isCurrentUrl) {
       this.visit(url, { action: "replace", shouldCacheSnapshot: false })
     }
   }
